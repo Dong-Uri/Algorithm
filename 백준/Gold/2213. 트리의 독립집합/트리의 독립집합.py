@@ -1,4 +1,5 @@
 import copy
+import sys
 
 def find_set(i):
     hap1 = 0
@@ -17,12 +18,12 @@ def find_set(i):
         lst2 += l1
     return hap1, lst1, hap2, lst2
 
-n = int(input())
-w_lst = list(map(int, input().split()))
+n = int(sys.stdin.readline())
+w_lst = list(map(int, sys.stdin.readline().split()))
 connect = [[] for _ in range(n+1)]
 while True:
     try:
-        a, b = map(int, input().split())
+        a, b = map(int, sys.stdin.readline().split())
         connect[a].append(b)
         connect[b].append(a)
     except:
