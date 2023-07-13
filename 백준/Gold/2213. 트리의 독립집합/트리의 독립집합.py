@@ -32,7 +32,7 @@ while True:
     except:
         break
 visited = [False] * (n+1)
-hap1, lst1, hap2, lst2 = find_set(1)
+hap1, lst1, hap2, lst2 = find_set(n)
 if hap1 > hap2:
     print(hap1)
     lst1.sort()
