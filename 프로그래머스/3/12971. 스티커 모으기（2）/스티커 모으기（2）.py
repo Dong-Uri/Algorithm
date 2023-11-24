@@ -1,6 +1,6 @@
 def solution(sticker):
     answer = [[0, 0], [0, sticker[0]]]
-    # 첫 집을 털었는지, 이전 집을 털었는지...
+    # 첫 스티커를 땠는지, 이전 스티커를 땠는지...
     for i in range(1, len(sticker) - 1):
         new = [[0, 0], [0, 0]]
         new[0][0] = max(answer[0])
