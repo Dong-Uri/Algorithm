@@ -9,11 +9,13 @@ if start == end:
     ans = 0
     now = False
 else:
-    now = deque([[start, 0]])
+    now = deque([[start, 0, -1]])
     ans = -1
 while now:
-    n, att = now.popleft()
+    n, att, bf = now.popleft()
     for x in range(N - K + 1):
+        if x == bf:
+            continue
         new_n = n[:]
         base = 2 * x + K - 1
         for i in range(x, x + K):
@@ -24,7 +26,7 @@ while now:
             ans = att + 1
             break
         visited.add(str(new_n))
-        now.append([new_n, att + 1])
+        now.append([new_n, att + 1, x])
     if new_n == end:
         break
 print(ans)
