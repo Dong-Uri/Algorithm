@@ -3,9 +3,6 @@ def solution(commands):
     table = [[['', [i, j]] for j in range(51)] for i in range(51)]
     for command in commands:
         c = command.split()
-        print(table[1][1], table[1][2], table[1][3])
-        print('-' * 50)
-        print(c)
         if c[0] == 'UPDATE':
             if len(c) == 4:
                 rc = table[int(c[1])][int(c[2])][1]
