@@ -10,6 +10,7 @@ def solution(edges):
         infos[a][2].append(b)
         infos[b][3].append(a)
     infos = infos[:max_i + 1]
+    # print(infos)
     
     i = 0
     while True:
