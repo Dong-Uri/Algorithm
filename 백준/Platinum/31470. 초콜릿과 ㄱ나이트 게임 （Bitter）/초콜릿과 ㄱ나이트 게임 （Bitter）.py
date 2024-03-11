@@ -4,10 +4,8 @@ def cnt(x, y):
 T = int(input())
 for _ in range(T):
     X, Y, x, y = map(int, input().split())
-    XX = X // x
-    xx = X % x
-    YY = Y // y
-    yy = Y % y
+    XX, xx = divmod(X, x)
+    YY, yy = divmod(Y, y)
     ans = 0
     ans += cnt(XX + 1, YY + 1) * xx * yy
     ans += cnt(XX + 1, YY) * xx * (y - yy)
