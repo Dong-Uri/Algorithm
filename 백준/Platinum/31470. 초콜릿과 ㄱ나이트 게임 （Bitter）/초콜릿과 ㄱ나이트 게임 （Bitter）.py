@@ -1,9 +1,11 @@
+import sys
+
 def cnt(x, y):
     return max((x - x // 2) * y, x * (y - y // 2))
 
-T = int(input())
+T = int(sys.stdin.readline().rstrip())
 for _ in range(T):
-    X, Y, x, y = map(int, input().split())
+    X, Y, x, y = map(int, sys.stdin.readline().rstrip().split())
     XX, xx = divmod(X, x)
     YY, yy = divmod(Y, y)
     ans = 0
