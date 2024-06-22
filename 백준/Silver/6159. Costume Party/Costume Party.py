@@ -1,7 +1,9 @@
-N, S = map(int, input().split())
+import sys
+
+N, S = map(int, sys.stdin.readline().rstrip().split())
 L = []
 for _ in range(N):
-    L.append(int(input()))
+    L.append(int(sys.stdin.readline().rstrip()))
 L.sort()
 l = 0
 r = N - 1
