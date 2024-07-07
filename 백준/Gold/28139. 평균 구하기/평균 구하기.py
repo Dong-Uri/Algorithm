@@ -1,7 +1,9 @@
-N = int(input())
+import sys
+
+N = int(sys.stdin.readline().rstrip())
 xys = []
 for _ in range(N):
-    xys.append(list(map(int, input().split())))
+    xys.append(list(map(int, sys.stdin.readline().rstrip().split())))
 ans = 0
 for i in range(N):
     for j in range(i):
