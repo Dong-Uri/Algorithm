@@ -1,6 +1,8 @@
 import sys
-N = int(sys.stdin.readline().rstrip())
-arr = [list(map(int, sys.stdin.readline().rstrip().split())) for _ in range(N)]
+input = sys.stdin.readline
+
+N = int(input())
+arr = [list(map(int, input().split())) for _ in range(N)]
 cnt = [N - 1] * N
 line = arr[-1]
 n = 0
