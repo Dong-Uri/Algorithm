@@ -43,7 +43,7 @@ while TM and answer == -1:
         if cnt == 0:
             r += ways[d][0]
             c += ways[d][1]
-            if spaces[0][r][c]:
+            if r == -1 or r == N or c == -1 or c == N or spaces[0][r][c]:
                 continue
             spaces[0][r][c] = 1
             cnt = v
