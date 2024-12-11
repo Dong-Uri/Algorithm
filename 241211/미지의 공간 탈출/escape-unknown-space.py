@@ -35,7 +35,7 @@ for r, c, _, _, _ in phenomena:
 
 ways = [[0, 1], [0, -1], [1, 0], [-1, 0]]
 answer = -1
-t = 0
+t = -1
 while TM and answer == -1:
     now = TM.popleft()
 
