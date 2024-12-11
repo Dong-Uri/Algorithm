@@ -35,22 +35,25 @@ for r, c, _, _, _ in phenomena:
 
 ways = [[0, 1], [0, -1], [1, 0], [-1, 0]]
 answer = -1
+t = 0
 while TM and answer == -1:
-    
-    new_phenomena = []
-    for r, c, d, v, cnt in phenomena:
-        cnt -= 1
-        if cnt == 0:
-            r += ways[d][0]
-            c += ways[d][1]
-            if r == -1 or r == N or c == -1 or c == N or spaces[0][r][c]:
-                continue
-            spaces[0][r][c] = 1
-            cnt = v
-        new_phenomena.append([r, c, d, v, cnt])
-    phenomena = new_phenomena
-
     now = TM.popleft()
+
+    if now[3] - t:
+        t += 1
+        new_phenomena = []
+        for r, c, d, v, cnt in phenomena:
+            cnt -= 1
+            if cnt == 0:
+                r += ways[d][0]
+                c += ways[d][1]
+                if r == -1 or r == N or c == -1 or c == N or spaces[0][r][c]:
+                    continue
+                spaces[0][r][c] = 1
+                cnt = v
+            new_phenomena.append([r, c, d, v, cnt])
+        phenomena = new_phenomena
+
     for wi, wj in ways:
         nxt = [now[0], now[1] + wi, now[2] + wj, now[3] + 1]
         if nxt[0] == 0:
