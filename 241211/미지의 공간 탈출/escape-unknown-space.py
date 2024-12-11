@@ -145,7 +145,7 @@ while TM and answer == -1:
                 nxt[2] = nxt[1]
                 nxt[1] = 0
             elif nxt[2] == M:
-                nxt[0] = 2
+                nxt[0] = 1
                 nxt[2] = M - 1 - nxt[1]
                 nxt[1] = 0
             if spaces[nxt[0]][nxt[1]][nxt[2]] == 0:
