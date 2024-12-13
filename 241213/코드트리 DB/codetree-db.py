@@ -49,7 +49,8 @@ for _ in range(Q):
                 l = (l + r) // 2
                 if value_sort[l] == value:
                     r = l + 1
-        value_sort = value_sort[:l + 1] + value_sort[r + 1:]
+        value_sort = value_sort[:l] + value_sort[r:]
+        print(value)
 
     if q[0] == 'rank':
         k = int(q[1])
