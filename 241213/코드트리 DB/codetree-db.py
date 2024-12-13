@@ -1,5 +1,5 @@
 import heapq
-from bisect import bisect_left, insort
+from bisect import bisect_left, bisect_right, insort
 
 Q = int(input())
 for _ in range(Q):
@@ -40,5 +40,10 @@ for _ in range(Q):
     
     elif q[0] == 'sum':
         k = int(q[1])
-        idx = bisect_left(value_sort, k)  # k 이하의 값까지의 합 계산
+        idx = bisect_right(value_sort, k)  # k 이하의 값까지의 합 계산
         print(sum(value_sort[:idx]))
+
+    # print(q)
+    # print(name_dict)
+    # print(value_dict)
+    # print(value_sort)
