@@ -59,7 +59,7 @@ for _ in range(Q):
         i, _ = mountain_list.pop()
         mountain_info[i].pop()
         if not mountain_info[i]:
-            mountaion_info.pop()
+            mountain_info.pop()
 
     if order[0] == 400:
         m = order[1]
