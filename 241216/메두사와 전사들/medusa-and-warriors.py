@@ -26,7 +26,7 @@ while queue:
     if now[0] + ai == er and now[1] + aj == ec:
         break
 else:
-    route = False
+    route = []
     print(-1)
 
 A_map = [[0] * N for _ in range(N)]
