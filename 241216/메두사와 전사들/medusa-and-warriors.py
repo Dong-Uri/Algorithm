@@ -172,7 +172,7 @@ for nr, nc in route:
     st_r = 0
     A_map_r = [[0] * N for _ in range(N)]
     vision_r = [[0] * N for _ in range(N)]
-    e = N
+    e = -1
     for j in range(nc + 1, N):
         jj = j
         ii = nr - 1
@@ -210,49 +210,56 @@ for nr, nc in route:
         A_map_next = A_map_r
         vision = vision_r
 
-    A_map_dummy = [[0] * N for _ in range(N)]
+    A_map_dummy1 = [[0] * N for _ in range(N)]
     for i in range(N):
         for j in range(N):
             if A_map[i][j] and not A_map_next[i][j]:
                 if i - nr > 0 and not vision[i - 1][j]:
                     mv += A_map[i][j]
-                    A_map_dummy[i - 1][j] += A_map[i][j]
+                    A_map_dummy1[i - 1][j] += A_map[i][j]
                     continue
                 if nr - i > 0 and not vision[i + 1][j]:
                     mv += A_map[i][j]
-                    A_map_dummy[i + 1][j] += A_map[i][j]
+                    A_map_dummy1[i + 1][j] += A_map[i][j]
                     continue
                 if j - nc > 0 and not vision[i][j - 1]:
                     mv += A_map[i][j]
-                    A_map_dummy[i][j - 1] += A_map[i][j]
+                    A_map_dummy1[i][j - 1] += A_map[i][j]
                     continue
                 if nc - j > 0 and not vision[i][j + 1]:
                     mv += A_map[i][j]
-                    A_map_dummy[i][j + 1] += A_map[i][j]
+                    A_map_dummy1[i][j + 1] += A_map[i][j]
                     continue
-                A_map_dummy[i][j] = A_map[i][j]
+                A_map_dummy1[i][j] += A_map[i][j]
+
+    A_map_dummy2 = [[0] * N for _ in range(N)]
+    for i in range(N):
+        for j in range(N):
+            if A_map_dummy1[i][j] and not A_map_next[i][j]:
+                if j - nc > 0 and not vision[i][j - 1]:
+                    mv += A_map_dummy1[i][j]
+                    A_map_dummy2[i][j - 1] += A_map_dummy1[i][j]
+                    continue
+                if nc - j > 0 and not vision[i][j + 1]:
+                    mv += A_map_dummy1[i][j]
+                    A_map_dummy2[i][j + 1] += A_map_dummy1[i][j]
+                    continue
+                if i - nr > 0 and not vision[i - 1][j]:
+                    mv += A_map_dummy1[i][j]
+                    A_map_dummy2[i - 1][j] += A_map_dummy1[i][j]
+                    continue
+                if nr - i > 0 and not vision[i + 1][j]:
+                    mv += A_map_dummy1[i][j]
+                    A_map_dummy2[i + 1][j] += A_map_dummy1[i][j]
+                    continue
+                A_map_dummy2[i][j] += A_map_dummy1[i][j]
 
     for i in range(N):
         for j in range(N):
-            if A_map_dummy[i][j] and not A_map_next[i][j]:
-                if j - nc > 0 and not vision[i][j - 1]:
-                    mv += A_map_dummy[i][j]
-                    A_map_next[i][j - 1] += A_map_dummy[i][j]
-                    continue
-                if nc - j > 0 and not vision[i][j + 1]:
-                    mv += A_map_dummy[i][j]
-                    A_map_next[i][j + 1] += A_map_dummy[i][j]
-                    continue
-                if i - nr > 0 and not vision[i - 1][j]:
-                    mv += A_map_dummy[i][j]
-                    A_map_next[i - 1][j] += A_map_dummy[i][j]
-                    continue
-                if nr - i > 0 and not vision[i + 1][j]:
-                    mv += A_map_dummy[i][j]
-                    A_map_next[i + 1][j] += A_map_dummy[i][j]
-                    continue
-                A_map_next[i][j] = A_map_dummy[i][j]
-
+            A_map_next[i][j] += A_map_dummy2[i][j]
+    # print(A_map_dummy1)
+    # print(A_map_dummy2)
+    # print(A_map_next)
     # print(vision)
     at += A_map_next[nr][nc]
     A_map_next[nr][nc] = 0
