@@ -34,6 +34,8 @@ for i in range(M):
     A_map[A[2 * i]][A[2 * i + 1]] += 1
 
 for nr, nc in route:
+    # print(nr, nc)
+    # print(A_map)
     if nr == er and nc == ec:
         print(0)
         break
@@ -144,7 +146,7 @@ for nr, nc in route:
     e = N
     for j in range(nc - 1, -1, -1):
         jj = j
-        ii = nc + 1
+        ii = nr + 1
         while jj >= 0 and ii < e:
             vision_l[ii][jj] = 1
             if A_map[ii][jj]:
@@ -154,7 +156,7 @@ for nr, nc in route:
                 break
             ii += 1
             jj -= 1
-    j = nc
+    i = nr
     for j in range(nc - 1, -1, -1):
         vision_l[i][j] = 1
         if A_map[i][j]:
@@ -186,7 +188,7 @@ for nr, nc in route:
     e = N
     for j in range(nc + 1, N):
         jj = j
-        ii = nc + 1
+        ii = nr + 1
         while jj < N and ii < e:
             vision_r[ii][jj] = 1
             if A_map[ii][jj]:
@@ -196,7 +198,7 @@ for nr, nc in route:
                 break
             ii += 1
             jj += 1
-    j = nc
+    j = nr
     for j in range(nc + 1, N):
         vision_r[i][j] = 1
         if A_map[i][j]:
@@ -251,6 +253,7 @@ for nr, nc in route:
                     continue
                 A_map_next[i][j] = A_map_dummy[i][j]
 
+    # print(vision)
     at += A_map_next[nr][nc]
     A_map_next[nr][nc] = 0
     A_map = A_map_next
